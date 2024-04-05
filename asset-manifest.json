@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.8f280318.chunk.css",
-    "main.js": "/static/js/main.9f1bfab7.chunk.js",
-    "main.js.map": "/static/js/main.9f1bfab7.chunk.js.map",
+    "main.js": "/static/js/main.9cdbd0a1.chunk.js",
+    "main.js.map": "/static/js/main.9cdbd0a1.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.11e15922.js",
     "runtime-main.js.map": "/static/js/runtime-main.11e15922.js.map",
     "static/css/2.165ff965.chunk.css": "/static/css/2.165ff965.chunk.css",
@@ -14,6 +14,7 @@
     "static/css/2.165ff965.chunk.css.map": "/static/css/2.165ff965.chunk.css.map",
     "static/css/main.8f280318.chunk.css.map": "/static/css/main.8f280318.chunk.css.map",
     "static/js/2.6f54eaff.chunk.js.LICENSE.txt": "/static/js/2.6f54eaff.chunk.js.LICENSE.txt",
+    "static/media/Abhilash_Reddy_Sandi_Resume.57990351.pdf": "/static/media/Abhilash_Reddy_Sandi_Resume.57990351.pdf",
     "static/media/index.css": "/static/media/BestermindRegular.e58a1922.ttf",
     "static/media/adobe-xd.fa7a22d2.svg": "/static/media/adobe-xd.fa7a22d2.svg",
     "static/media/adobeaudition.dd56aeda.svg": "/static/media/adobeaudition.dd56aeda.svg",
@@ -128,7 +129,6 @@
     "static/media/react.c3a0b34a.svg": "/static/media/react.c3a0b34a.svg",
     "static/media/redTheme-boy.74f6dfaa.svg": "/static/media/redTheme-boy.74f6dfaa.svg",
     "static/media/redTheme-girl.e2b9dd83.svg": "/static/media/redTheme-girl.e2b9dd83.svg",
-    "static/media/resume.1aa9efee.pdf": "/static/media/resume.1aa9efee.pdf",
     "static/media/ruby.775cc228.svg": "/static/media/ruby.775cc228.svg",
     "static/media/selenium.f0d42a91.svg": "/static/media/selenium.f0d42a91.svg",
     "static/media/seven.d5cabb8e.svg": "/static/media/seven.d5cabb8e.svg",
@@ -158,6 +158,6 @@
     "static/css/2.165ff965.chunk.css",
     "static/js/2.6f54eaff.chunk.js",
     "static/css/main.8f280318.chunk.css",
-    "static/js/main.9f1bfab7.chunk.js"
+    "static/js/main.9cdbd0a1.chunk.js"
   ]
 }
