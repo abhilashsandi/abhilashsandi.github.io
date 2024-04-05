@@ -7,62 +7,61 @@ import { FaInternetExplorer,  FaChalkboardTeacher, FaCameraRetro, FaPinterest, F
  
 
 export const servicesData = [
+    {
+        id: 6,
+        title: 'Development',
+        icon: <BsCodeSlash />
+    },
     // {
     //     id: 1,
     //     title: 'Marketing',
     //     icon: <BiShoppingBag/>
     // },
-    {
-        id: 2,
-        title: 'Content Writing',
-        icon: <BiPencil /> 
-    },
-    {
-        id: 3,
-        title: 'Email Marketing',
-        icon: <AiOutlineMail />
-    },
     // {
-    //     id: 4,
-    //     title: 'Internet Research',
-    //     icon: <FaInternetExplorer />
+    //     id: 2,
+    //     title: 'Content Writing',
+    //     icon: <BiPencil /> 
     // },
+    // {
+    //     id: 3,
+    //     title: 'Email Marketing',
+    //     icon: <AiOutlineMail />
+    // },
+    {
+        id: 4,
+        title: 'Internet Research',
+        icon: <FaInternetExplorer />
+    },
     // {
     //     id: 5,
     //     title: 'Tutoring',
     //     icon: <FaChalkboardTeacher />
     // },
-
-    {
-        id: 6,
-        title: 'Web Design',
-        icon: <BsCodeSlash />
-    },
-    {
-        id: 7,
-        title: 'Photography',
-        icon: <FaCameraRetro />
-    },
+    // {
+    //     id: 7,
+    //     title: 'Photography',
+    //     icon: <FaCameraRetro />
+    // },
     // {
     //     id: 8,
     //     title: 'Pinterest Virtual Assistant',
     //     icon: <FaPinterest />
     // }, 
-    {
-        id: 9,
-        title: 'Video Editing',
-        icon: <FaVideo />
-    },
+    // {
+    //     id: 9,
+    //     title: 'Video Editing',
+    //     icon: <FaVideo />
+    // },
     // {
     //     id: 10,
     //     title: 'Data Entry', 
     //     icon: <BsClipboardData />
     // },
-    {
-        id: 11,
-        title: 'Ebook Writing',
-        icon: <FaTabletAlt />
-    },
+    // {
+    //     id: 11,
+    //     title: 'Ebook Writing',
+    //     icon: <FaTabletAlt />
+    // },
     // {
     //     id: 12,
     //     title: 'Audio Transcription',
@@ -73,6 +72,11 @@ export const servicesData = [
         title: 'Blog Posting',
         icon: <FaRegNewspaper />
     },
+     {
+        id: 14,
+        title: 'Travel Advice',
+        icon: <FaCameraRetro />
+    }
 
 ]
 
