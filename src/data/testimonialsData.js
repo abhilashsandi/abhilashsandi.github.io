@@ -19,14 +19,14 @@ export const testimonialsData = [
     {
         id: 2,
         name: 'Shubham Agarwal',
-        title: 'Senior Software Engineer, one.com',
+        title: 'SSE, one.com',
         text: "During a migration project at one.com he showed tremendous skill and lead from the front guiding the whole team to achieve tremendous results in record time.",
         image: boy2
     },
     {
         id: 3,
         name: 'Hemanth Sanareddy',
-        title: 'UI Developer, Syncro',
+        title: 'UI Lead, Syncro',
         text: "Abhilash Sandi proved to be an exceptionally reliable colleague, consistently delivering outstanding work for the team",
         image: boy3
     }
