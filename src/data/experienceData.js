@@ -1,8 +1,8 @@
 export const experienceData = [
     {
         id: 1,
-        company: 'one.com',
-        jobtitle: 'Senior Software Developer/Team Lead',
+        company: 'TGS Technology LLC / one.com',
+        jobtitle: 'Senior Software Developer / Team Lead',
         startYear: '2019',
         endYear: 'Present'
     },
