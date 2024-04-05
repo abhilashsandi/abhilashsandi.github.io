@@ -27,7 +27,7 @@ export const projectsData = [
         with PAAS (Platform As A Service) for customers wanting speedy creation of custom
         Apps that are browser delivered (responsive web) or device installed (hybrid mobile
         apps).`,
-        tags: ['Angular', 'Angular 2+', 'jQuery'],
+        tags: ['Angular', 'jQuery', 'Bootstrap'],
         code: 'https://github.com/wavemaker/wavemaker-app-runtime',
         demo: 'https://www.wavemaker.com/',
         image: two
