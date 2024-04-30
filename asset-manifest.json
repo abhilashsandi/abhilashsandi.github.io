@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.8f280318.chunk.css",
-    "main.js": "/static/js/main.3fc4baca.chunk.js",
-    "main.js.map": "/static/js/main.3fc4baca.chunk.js.map",
+    "main.js": "/static/js/main.c05fa1d2.chunk.js",
+    "main.js.map": "/static/js/main.c05fa1d2.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.11e15922.js",
     "runtime-main.js.map": "/static/js/runtime-main.11e15922.js.map",
     "static/css/2.165ff965.chunk.css": "/static/css/2.165ff965.chunk.css",
@@ -14,7 +14,7 @@
     "static/css/2.165ff965.chunk.css.map": "/static/css/2.165ff965.chunk.css.map",
     "static/css/main.8f280318.chunk.css.map": "/static/css/main.8f280318.chunk.css.map",
     "static/js/2.6f54eaff.chunk.js.LICENSE.txt": "/static/js/2.6f54eaff.chunk.js.LICENSE.txt",
-    "static/media/Abhilash_Reddy_Sandi_Resume.57990351.pdf": "/static/media/Abhilash_Reddy_Sandi_Resume.57990351.pdf",
+    "static/media/Abhilash_Reddy_Sandi_Resume.f3c740fa.pdf": "/static/media/Abhilash_Reddy_Sandi_Resume.f3c740fa.pdf",
     "static/media/index.css": "/static/media/BestermindRegular.e58a1922.ttf",
     "static/media/adobe-xd.fa7a22d2.svg": "/static/media/adobe-xd.fa7a22d2.svg",
     "static/media/adobeaudition.dd56aeda.svg": "/static/media/adobeaudition.dd56aeda.svg",
@@ -158,6 +158,6 @@
     "static/css/2.165ff965.chunk.css",
     "static/js/2.6f54eaff.chunk.js",
     "static/css/main.8f280318.chunk.css",
-    "static/js/main.3fc4baca.chunk.js"
+    "static/js/main.c05fa1d2.chunk.js"
   ]
 }
