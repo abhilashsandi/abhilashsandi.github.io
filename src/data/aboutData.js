@@ -1,6 +1,6 @@
 export const aboutData = {
     title: "Who I am",
-    description1: "My name's Abhilash Sandi. I'm a web developer based in Charlotte, NC, US.",
+    description1: "My name's Abhilash Sandi. I'm a web developer based in Dallas, TX, US.",
     description2: `Results-driven developer with 10+ years of experience in leading cross-functional teams to create
     and deliver cutting-edge solutions for diverse markets. Specialize in crafting high-quality React
     components that enhance user experiences and elevate application performance. Strong track record of
