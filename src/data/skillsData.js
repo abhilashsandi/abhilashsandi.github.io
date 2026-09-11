@@ -2,20 +2,23 @@
     'HTML',
     'CSS',
     'Javascript',
+    'Typescript',
     'React',
+    'Next JS',
     'Node JS',
     'Angular',
+    'Graphql',
+    'MongoDB',
+    'PostgreSQL',
+    'MySQL',
     'Docker',
+    'AWS',
+    'Azure',
+    'Git',
     'Figma',
     'Bootstrap',
-    'Typescript',
     'MaterialUI',
-    'AWS',
-    'Next JS',
-    'MongoDB',
-    'Tailwind',
-    'ViteJS',
-    'MySQL'
+    'Tailwind'
 ]
 
 // Choose your skills from below. Make sure it's in the same format and spelled correctly.

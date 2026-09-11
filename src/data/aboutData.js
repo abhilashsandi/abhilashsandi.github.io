@@ -1,11 +1,12 @@
 export const aboutData = {
     title: "Who I am",
-    description1: "My name's Abhilash Sandi. I'm a web developer based in Dallas, TX, US.",
-    description2: `Results-driven developer with 10+ years of experience in leading cross-functional teams to create
-    and deliver cutting-edge solutions for diverse markets. Specialize in crafting high-quality React
-    components that enhance user experiences and elevate application performance. Strong track record of
-    delivering high-quality web applications and leading teams for successful project completion, on
-    both the front-end and back-end. Deep understanding of web development concepts such as RESTful API
-    design, microservices, and cloud computing couple with proficiency in Agile methodologies`,
+    description1: "My name's Abhilash Reddy Sandi. I'm a Senior Software Engineer based in Dallas, TX, US.",
+    description2: `Senior Software Engineer with 13 years of experience leading cross-functional teams to build
+    and deliver full-stack web applications for diverse markets. Specializes in React/Next.js and Node.js
+    development, owning projects end-to-end across front-end and back-end. Experienced in RESTful API
+    design, microservices, and cloud-based deployments, with deep proficiency in Agile methodologies.
+    Drives adoption of AI-assisted development workflows (Claude Code, Cursor) to accelerate delivery and
+    improve code quality. Skilled at mentoring junior developers and leading teams to successful project
+    completion.`,
     image: 2
 }
