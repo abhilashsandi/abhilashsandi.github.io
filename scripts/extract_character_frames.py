@@ -45,7 +45,7 @@ def circular_motion_indices(
     frame_count: int,
     output_count: int = 64,
     anchor_ratios: tuple[float, float, float, float, float] = (
-        0.075, 0.267, 0.529, 0.729, 0.863
+        0.096, 0.267, 0.529, 0.729, 0.9
     ),
 ) -> list[int]:
     """Sample real up/right/down/left/up anchors from a circular Flow render."""
@@ -65,9 +65,10 @@ def circular_motion_indices(
         )
     indices.extend(
         evenly_spaced_indices(
-            frame_count, quarter, anchors[3], anchors[4]
+            frame_count, quarter - 1, anchors[3], anchors[4]
         )[1:]
     )
+    indices.append(anchors[0])
     return indices
 
 
@@ -76,7 +77,7 @@ def extract(
     destination: Path,
     output_count: int = 64,
     anchor_ratios: tuple[float, float, float, float, float] = (
-        0.075, 0.267, 0.529, 0.729, 0.863
+        0.096, 0.267, 0.529, 0.729, 0.9
     ),
 ) -> None:
     capture = cv2.VideoCapture(str(source))

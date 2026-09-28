@@ -31,13 +31,14 @@ class EvenlySpacedIndicesTest(unittest.TestCase):
             directional_motion_indices(100, 63)
 
     def test_circular_motion_uses_real_cardinal_anchors(self):
-        indices = circular_motion_indices(241, 64, (0.075, 0.267, 0.529, 0.729, 0.863))
+        indices = circular_motion_indices(241, 64, (0.096, 0.267, 0.529, 0.729, 0.9))
         self.assertEqual(len(indices), 64)
-        self.assertEqual(indices[0], 18)
+        self.assertEqual(indices[0], 23)
         self.assertEqual(indices[16], 64)
         self.assertEqual(indices[32], 127)
         self.assertEqual(indices[48], 175)
-        self.assertEqual(indices[-1], 207)
+        self.assertEqual(indices[-2], 216)
+        self.assertEqual(indices[-1], indices[0])
 
 
 if __name__ == "__main__":
