@@ -3,10 +3,11 @@ import { Helmet } from 'react-helmet'
 
 import { Footer, Landing, About, Skills, Testimonials, Blog, Education, Experience, Contacts, Projects, Services, Achievement } from '../../components'
 import { headerData } from '../../data/headerData'
+import './WarmStudio.css'
 
 function Main() {
     return (
-        <div>
+        <div className='warm-studio-page'>
             <Helmet>
                 <title>{headerData.name} - Porfolio</title>
             </Helmet>

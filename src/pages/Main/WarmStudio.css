@@ -1,0 +1,12 @@
+.warm-studio-page {
+  --studio: #e4ded5;
+  --studio-light: #eee8e1;
+  --studio-deep: #d8cec2;
+  --ink: #241f1b;
+  --ink-muted: rgba(36, 31, 27, 0.72);
+  --studio-border: rgba(36, 31, 27, 0.16);
+  --studio-shadow: 0 18px 50px rgba(48, 39, 32, 0.08);
+  background: var(--studio);
+  color: var(--ink);
+  overflow: hidden;
+}
