@@ -19,8 +19,8 @@
     display:grid;
     grid-template-rows:auto auto;
     align-content:start;
-    min-height:100svh;
-    padding:0 1.25rem 2.5rem;
+    min-height:0;
+    padding:0 1.25rem 2rem;
     overflow:hidden;
   }
   .cursor-hero::after{
@@ -51,7 +51,7 @@
     z-index:3;
     align-self:start;
     width:100%;
-    padding-top:0;
+    padding-top:1.25rem;
   }
   .cursor-hero__eyebrow{
     margin-bottom:.45rem;
