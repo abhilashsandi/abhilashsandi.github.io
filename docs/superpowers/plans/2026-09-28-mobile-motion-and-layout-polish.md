@@ -303,7 +303,41 @@ git add -- src/pages/Main/WarmStudio.css
 git commit -m "fix: widen desktop about content"
 ```
 
-### Task 6: Full local verification
+### Task 6: Correct contact-form contrast
+
+**Files:**
+- Modify: `src/pages/Main/WarmStudio.css`
+
+- [ ] **Step 1: Record the conflicting computed colors**
+
+At desktop and mobile widths, inspect a form label, the submit button paragraph, and the send icon. Confirm the label keeps the legacy dark background and the broad `.contacts p` override wins over the button's intended white foreground.
+
+- [ ] **Step 2: Add scoped warm-studio contrast overrides**
+
+```css
+.warm-studio-page .contacts label {
+  background:var(--studio-light) !important;
+  color:var(--ink) !important;
+}
+.warm-studio-page .submit-btn button,
+.warm-studio-page .submit-btn button :is(p, svg) {
+  background:var(--ink) !important;
+  color:#fff !important;
+}
+```
+
+- [ ] **Step 3: Verify desktop and mobile form appearance**
+
+Confirm cream label chips with black text, a black button with visible white `Send` text and icon, visible focus styling, and no change to input or textarea dimensions.
+
+- [ ] **Step 4: Commit the contrast fix**
+
+```powershell
+git add -- src/pages/Main/WarmStudio.css
+git commit -m "fix: restore contact form contrast"
+```
+
+### Task 7: Full local verification
 
 **Files:**
 - Verify only; modify only if a test exposes a scoped defect.
@@ -338,7 +372,7 @@ Expected: optimized build and react-snap complete; only known legacy unused-impo
 
 - [ ] **Step 4: Perform final browser QA**
 
-Verify desktop hero, desktop About, 390x844 mobile hero, and 390x1080 mobile hero. Confirm no gap/overlap, no horizontal overflow, the open-eyed static portrait before permission, and graceful denied/unavailable motion states. Physical tilt must be verified on an HTTPS-served sensor-equipped phone after deployment; desktop emulation verifies the permission state machine but cannot prove hardware readings.
+Verify desktop hero, desktop About, desktop contact form, 390x844 mobile hero/contact form, and 390x1080 mobile hero. Confirm no gap/overlap, no horizontal overflow, the open-eyed static portrait before permission, readable contact labels/button contents, and graceful denied/unavailable motion states. Physical tilt must be verified on an HTTPS-served sensor-equipped phone after deployment; desktop emulation verifies the permission state machine but cannot prove hardware readings.
 
 - [ ] **Step 5: Review the diff and preserve local-only status**
 

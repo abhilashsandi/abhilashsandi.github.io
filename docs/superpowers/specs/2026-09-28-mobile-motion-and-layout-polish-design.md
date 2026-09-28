@@ -36,6 +36,10 @@ The canvas becomes visible only after permission is granted, frames are ready, a
 
 Sensor access is never requested on page load. The user initiates it through a clearly labeled button. The button reports enabling, enabled, denied, or unavailable states without blocking navigation. Reduced-motion users are not offered the motion control. Sensor listeners and animation frames are removed when the hero unmounts.
 
+## Contact Form Contrast
+
+The warm-studio theme will explicitly replace the legacy dark label background with a cream label chip and black text. The submit button remains black, while its `Send`/`Sent` text and send/success icons are forced to white so broader paragraph color rules cannot reduce their contrast. The same treatment applies on desktop and mobile without changing form behavior.
+
 ## Testing
 
-Automated tests will cover orientation normalization, clamping, baseline-relative angle calculation, and the static-before-permission behavior. Existing pointer mapping tests remain unchanged. Local browser verification will cover desktop About width, mobile portrait/copy adjacency, no horizontal overflow, the open-eyed static fallback, and the motion-control states that can be simulated without physical sensor hardware.
+Automated tests will cover orientation normalization, clamping, baseline-relative angle calculation, and the static-before-permission behavior. Existing pointer mapping tests remain unchanged. Local browser verification will cover desktop About width, mobile portrait/copy adjacency, no horizontal overflow, the open-eyed static fallback, contact-form contrast, and the motion-control states that can be simulated without physical sensor hardware.
