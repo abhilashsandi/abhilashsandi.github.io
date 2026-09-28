@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -57,4 +57,38 @@ test('renders the compact primary navigation', () => {
     'href',
     '/#projects'
   );
+});
+
+test('keeps the static portrait when mobile motion permission is denied', async () => {
+  window.matchMedia = jest.fn((query) => ({
+    matches: query === '(pointer: coarse)',
+    media: query,
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+  }));
+  const requestPermission = jest.fn().mockResolvedValue('denied');
+  Object.defineProperty(window, 'DeviceOrientationEvent', {
+    configurable: true,
+    value: { requestPermission },
+  });
+
+  render(
+    <MemoryRouter>
+      <ThemeContextProvider>
+        <Landing />
+      </ThemeContextProvider>
+    </MemoryRouter>
+  );
+
+  const portrait = screen.getByRole('img', { name: /abhilash sandi/i });
+  expect(screen.getByRole('button', { name: /enable motion/i })).toBeInTheDocument();
+  expect(portrait).toBeVisible();
+  expect(screen.getByLabelText(/animated portrait/i)).toHaveAttribute('aria-hidden', 'true');
+
+  fireEvent.click(screen.getByRole('button', { name: /enable motion/i }));
+
+  await waitFor(() => expect(requestPermission).toHaveBeenCalledTimes(1));
+  expect(await screen.findByRole('button', { name: /motion denied/i })).toBeDisabled();
+  expect(portrait).toBeVisible();
+  expect(screen.getByLabelText(/animated portrait/i)).toHaveAttribute('aria-hidden', 'true');
 });
