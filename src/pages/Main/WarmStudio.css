@@ -258,6 +258,7 @@
 }
 
 .warm-studio-page .contacts label {
+  background: var(--studio-light) !important;
   color: var(--ink) !important;
 }
 
@@ -265,6 +266,10 @@
   background: var(--ink) !important;
   color: #fff !important;
   border: 1px solid var(--ink) !important;
+}
+
+.warm-studio-page .submit-btn button :is(p, svg) {
+  color: #fff !important;
 }
 
 .warm-studio-page .contacts-details :is(p, a, svg) {
