@@ -98,6 +98,10 @@
   line-height: 1.8;
 }
 
+.warm-studio-page .about-description > p + p {
+  margin-top: 1rem;
+}
+
 .warm-studio-page :is(.about-img, .experience-image, .education-image) img {
   filter: saturate(0.15) sepia(0.08);
   opacity: 0.82;
