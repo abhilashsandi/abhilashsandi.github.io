@@ -451,3 +451,58 @@ Expected: 12 React tests pass, 6 extraction tests pass, and the optimized produc
 git add -- src/components/Landing/Landing.css
 git commit -m "fix: compact tall mobile hero"
 ```
+
+### Task 9: Separate the mobile eyebrow from the script signature
+
+**Files:**
+- Modify: `src/components/Landing/Landing.css`
+
+- [ ] **Step 1: Capture the failing line-box geometry at 390×844**
+
+Measure `.cursor-hero__eyebrow` and `.cursor-hero__copy h1`.
+
+Expected before the fix:
+
+```text
+eyebrow margin-bottom = 7.2px
+heading box gap = approximately 7.2px
+```
+
+The script font's upper flourish extends roughly 40px above its measured heading box, so this line-box gap visibly collides with the eyebrow.
+
+- [ ] **Step 2: Reserve sufficient flourish space**
+
+Within `@media(max-width:760px)`, change the eyebrow declaration to:
+
+```css
+.cursor-hero__eyebrow {
+  margin-bottom:3rem;
+}
+```
+
+Do not reduce the signature font size or change the portrait/copy and hero/About gaps.
+
+- [ ] **Step 3: Verify mobile geometry and appearance**
+
+At 390×844 and 390×1080, require:
+
+```text
+eyebrow margin-bottom = 48px
+heading box gap = approximately 48px
+portrait-to-eyebrow buffer = 20px
+About top - action buttons bottom = 32px
+documentElement.scrollWidth <= innerWidth
+```
+
+Visually confirm that `HI, I'M` and `Abhilash Sandi` no longer touch or overlap.
+
+- [ ] **Step 4: Run the full test and build suite**
+
+Run the 12 React tests, 6 extraction tests, and optimized production build using the commands in Task 8 Step 4.
+
+- [ ] **Step 5: Commit locally and do not push**
+
+```powershell
+git add -- src/components/Landing/Landing.css
+git commit -m "fix: separate mobile hero eyebrow"
+```
