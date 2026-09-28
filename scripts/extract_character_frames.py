@@ -2,6 +2,7 @@ from pathlib import Path
 import argparse
 
 import cv2
+import numpy as np
 
 
 def evenly_spaced_indices(
@@ -41,6 +42,30 @@ def directional_motion_indices(
     )
 
 
+def morph_frame(start, end, forward_flow, backward_flow, alpha: float):
+    height, width = start.shape[:2]
+    grid_x, grid_y = np.meshgrid(
+        np.arange(width, dtype=np.float32), np.arange(height, dtype=np.float32)
+    )
+    start_warp = cv2.remap(
+        start,
+        grid_x - forward_flow[..., 0] * alpha,
+        grid_y - forward_flow[..., 1] * alpha,
+        cv2.INTER_LINEAR,
+        borderMode=cv2.BORDER_REFLECT,
+    )
+    end_warp = cv2.remap(
+        end,
+        grid_x - backward_flow[..., 0] * (1 - alpha),
+        grid_y - backward_flow[..., 1] * (1 - alpha),
+        cv2.INTER_LINEAR,
+        borderMode=cv2.BORDER_REFLECT,
+    )
+    # Keep one opaque source face per frame; switching between aligned warps at
+    # the midpoint avoids the doubled facial features of a dissolve.
+    return start_warp if alpha < 0.5 else end_warp
+
+
 def extract(
     source: Path,
     destination: Path,
@@ -74,14 +99,28 @@ def extract(
             raise RuntimeError(f"unable to write {output}")
         directional_frames.append(frame)
 
-    # Flow returns to a centered pose after looking left. Blend left directly
-    # back to up so the upper-left cursor quadrant stays directional and loops.
+    # Flow returns to center after looking left. Motion-warp left directly back
+    # to up so the upper-left quadrant stays directional without double exposure.
     closing_count = output_count - len(directional_frames)
     left_frame = directional_frames[-1]
     up_frame = directional_frames[0]
+    left_gray = cv2.cvtColor(left_frame, cv2.COLOR_BGR2GRAY)
+    up_gray = cv2.cvtColor(up_frame, cv2.COLOR_BGR2GRAY)
+    flow_options = dict(
+        pyr_scale=0.5, levels=5, winsize=41, iterations=5,
+        poly_n=7, poly_sigma=1.5, flags=cv2.OPTFLOW_FARNEBACK_GAUSSIAN,
+    )
+    forward_flow = cv2.calcOpticalFlowFarneback(
+        left_gray, up_gray, None, **flow_options
+    )
+    backward_flow = cv2.calcOpticalFlowFarneback(
+        up_gray, left_gray, None, **flow_options
+    )
     for closing_index in range(1, closing_count + 1):
         alpha = closing_index / closing_count
-        frame = cv2.addWeighted(left_frame, 1 - alpha, up_frame, alpha, 0)
+        frame = morph_frame(
+            left_frame, up_frame, forward_flow, backward_flow, alpha
+        )
         output_index = len(directional_frames) + closing_index - 1
         output = destination / f"frame-{output_index:02d}.webp"
         if not cv2.imwrite(str(output), frame, [cv2.IMWRITE_WEBP_QUALITY, 88]):
