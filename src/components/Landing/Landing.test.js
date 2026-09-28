@@ -34,7 +34,8 @@ test('renders the Warm Studio hero identity and actions', () => {
   expect(
     screen.getByRole('link', { name: /let's talk/i })
   ).toBeInTheDocument();
-  expect(screen.getByRole('img', { name: /abhilash sandi/i })).toBeInTheDocument();
+  expect(screen.getByRole('img', { name: /abhilash sandi/i }))
+    .toHaveAttribute('src', '/character-assets/abhilash-open-eyed.png');
   expect(screen.getByLabelText(/animated portrait/i)).toHaveAttribute(
     'aria-hidden',
     'true'

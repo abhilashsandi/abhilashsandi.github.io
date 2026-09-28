@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export const FRAME_COUNT = 64;
-export const CENTER_FRAME = '/character-frames/center.webp';
+export const CENTER_FRAME = '/character-assets/abhilash-open-eyed.png';
 
 export default function useCharacterFrames(enabled) {
   const [state, setState] = useState({ frames: [], center: null, ready: false, failed: false });
