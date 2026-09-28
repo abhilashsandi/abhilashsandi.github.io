@@ -385,3 +385,69 @@ git log -8 --oneline
 ```
 
 Expected: clean worktree with local commits only. Do not push.
+
+### Task 8: Remove the tall-mobile overlap and trailing whitespace regression
+
+**Files:**
+- Modify: `src/components/Landing/Landing.css`
+
+- [ ] **Step 1: Capture the failing browser geometry at 390×1080**
+
+Read the bounding rectangles for `.cursor-hero__character`, `.cursor-hero__copy`, `.cursor-hero__actions`, `.cursor-hero`, and `.about`.
+
+Expected before the fix:
+
+```text
+copyPaddingTop = 0px
+hero min-height = 1080px
+aboutTop - actionsBottom = 327px (approximately)
+```
+
+- [ ] **Step 2: Apply the content-sized mobile hero and script safety inset**
+
+Within `@media(max-width:760px)`, change the hero and copy declarations to:
+
+```css
+.cursor-hero {
+  min-height:0;
+  padding-bottom:2rem;
+}
+.cursor-hero__copy {
+  padding-top:1.25rem;
+}
+```
+
+Keep the existing content-sized grid rows, `align-content:start`, and portrait sizing unchanged.
+
+- [ ] **Step 3: Re-run geometry checks at 390×844 and 390×1080**
+
+Require:
+
+```text
+copy padding-top = 20px
+aboutTop - actionsBottom <= 40px
+documentElement.scrollWidth <= innerWidth
+```
+
+Visually confirm that animated portrait frames, the eyebrow, and the signature no longer overlap and that About follows the hero without a viewport-sized empty region.
+
+- [ ] **Step 4: Run the full test and build suite**
+
+Run:
+
+```powershell
+npm test -- --watchAll=false --runInBand
+& 'C:\Users\abhilashsandi\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' -m unittest scripts.test_extract_character_frames -v
+$env:NODE_OPTIONS='--openssl-legacy-provider'
+$env:CI=''
+npm run build
+```
+
+Expected: 12 React tests pass, 6 extraction tests pass, and the optimized production build completes with only the documented legacy warnings.
+
+- [ ] **Step 5: Commit locally and do not push**
+
+```powershell
+git add -- src/components/Landing/Landing.css
+git commit -m "fix: compact tall mobile hero"
+```
