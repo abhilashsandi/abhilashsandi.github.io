@@ -299,6 +299,34 @@
   color: #c8aa94 !important;
 }
 
+@media (min-width: 993px) {
+  .warm-studio-page .about {
+    padding-block: clamp(3.5rem, 5vw, 5.5rem);
+  }
+
+  .warm-studio-page .about-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.8fr) minmax(240px, 0.65fr);
+    max-width: 1360px;
+    padding-inline: clamp(2rem, 4vw, 4rem);
+    gap: clamp(2.5rem, 5vw, 5rem);
+  }
+
+  .warm-studio-page .about-description {
+    width: auto;
+    max-width: 52rem;
+    flex: none;
+  }
+
+  .warm-studio-page .about-description > p {
+    max-width: 52rem;
+  }
+
+  .warm-studio-page .about-img > img {
+    width: min(100%, 300px);
+  }
+}
+
 @media (max-width: 760px) {
   .warm-studio-page :is(
     .about,
