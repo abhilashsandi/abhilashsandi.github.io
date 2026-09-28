@@ -12,6 +12,8 @@ The About section will use a wider content container and an explicit two-column 
 
 At the mobile breakpoint, the portrait becomes a normal grid item instead of an absolutely positioned layer above a placeholder row. The copy occupies the next row and starts immediately after the portrait. The layout will not rely on `align-self: end`, so unused viewport height cannot be inserted between the image and copy. The navigation remains overlaid at the top.
 
+The mobile hero is content-sized rather than forced to a full viewport height. A 20px top inset on the copy provides a safety zone for the script font's ascenders when animated frames change the apparent portrait boundary. After the action buttons, the hero keeps only a compact 32px bottom transition before the About section. At 390×1080 this removes the viewport-derived empty region while preserving deliberate spacing at shorter heights.
+
 ## Neutral Portrait
 
 The supplied `download (1).png` becomes the neutral/static portrait asset. It is shown:
