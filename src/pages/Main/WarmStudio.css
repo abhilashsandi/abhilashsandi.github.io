@@ -10,3 +10,340 @@
   color: var(--ink);
   overflow: hidden;
 }
+
+.warm-studio-page :is(
+  .about,
+  .skills,
+  .experience,
+  .projects,
+  .services,
+  .education,
+  .testimonials,
+  .contacts,
+  .footer
+) {
+  background: var(--studio) !important;
+  color: var(--ink) !important;
+}
+
+.warm-studio-page :is(.skills, .projects, .education, .contacts) {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-block: 1px solid var(--studio-border);
+}
+
+.warm-studio-page :is(
+  .about,
+  .skills,
+  .experience,
+  .projects,
+  .services,
+  .education,
+  .testimonials,
+  .contacts
+) {
+  min-height: auto;
+  padding-block: clamp(4.5rem, 8vw, 8rem);
+}
+
+.warm-studio-page :is(
+  .about,
+  .skills,
+  .experience,
+  .projects,
+  .services,
+  .education,
+  .testimonials,
+  .contacts
+) :is(h1, h2) {
+  color: var(--ink) !important;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.warm-studio-page :is(
+  .about-description,
+  .services-body,
+  .experience-details,
+  .education-details,
+  .review--content,
+  .contacts
+) :is(p, h4, h5) {
+  color: var(--ink-muted) !important;
+}
+
+.warm-studio-page .line-styling {
+  opacity: 0.45;
+}
+
+.warm-studio-page .line-styling :is(.style-circle, .style-line) {
+  background: var(--ink) !important;
+}
+
+.warm-studio-page .about-body {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 3rem clamp(1.5rem, 6vw, 6rem) 0;
+  gap: clamp(2rem, 7vw, 7rem);
+}
+
+.warm-studio-page .about-description > p {
+  color: var(--ink-muted) !important;
+  line-height: 1.8;
+}
+
+.warm-studio-page :is(.about-img, .experience-image, .education-image) img {
+  filter: saturate(0.15) sepia(0.08);
+  opacity: 0.82;
+}
+
+.warm-studio-page .skills {
+  padding-inline: clamp(1rem, 4vw, 4rem);
+}
+
+.warm-studio-page .skillsContainer {
+  max-width: 1280px;
+}
+
+.warm-studio-page .skill--box {
+  background: rgba(255, 255, 255, 0.42) !important;
+  border: 1px solid var(--studio-border);
+  border-radius: 24px;
+  box-shadow: var(--studio-shadow);
+}
+
+.warm-studio-page .skill--box h3 {
+  color: var(--ink) !important;
+}
+
+.warm-studio-page :is(.experience-body, .education-body) {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-inline: clamp(1rem, 4vw, 4rem);
+}
+
+.warm-studio-page :is(.experience-card, .education-card) {
+  height: auto;
+  min-height: 140px;
+  background: rgba(255, 255, 255, 0.32) !important;
+  border: 1px solid var(--studio-border);
+  border-radius: 24px;
+  box-shadow: 0 12px 32px rgba(48, 39, 32, 0.06);
+}
+
+.warm-studio-page :is(.expcard-img, .educard-img) {
+  background: var(--ink) !important;
+  box-shadow: 0 0 0 7px rgba(36, 31, 27, 0.08);
+}
+
+.warm-studio-page :is(.experience-details, .education-details) h6 {
+  color: #6b4d3a !important;
+}
+
+.warm-studio-page :is(.experience-details, .education-details) h4 {
+  color: var(--ink) !important;
+}
+
+.warm-studio-page .projects {
+  padding-inline: clamp(1rem, 4vw, 4rem);
+}
+
+.warm-studio-page .projects--bodyContainer {
+  max-width: 1180px;
+  flex-wrap: wrap;
+}
+
+.warm-studio-page .singleProject {
+  width: min(100%, 340px);
+  height: 390px;
+  background: rgba(255, 255, 255, 0.42) !important;
+  border: 1px solid var(--studio-border);
+  border-radius: 26px;
+  box-shadow: var(--studio-shadow);
+}
+
+.warm-studio-page .singleProject :is(h2, .project--desc, .project--lang) {
+  color: var(--ink) !important;
+}
+
+.warm-studio-page .singleProject :is(.project--desc, .project--lang) {
+  background: var(--studio-light) !important;
+  border: 1px solid var(--studio-border);
+}
+
+.warm-studio-page .project--showcaseBtn a > * {
+  color: var(--ink) !important;
+  border-color: var(--ink) !important;
+}
+
+.warm-studio-page .services {
+  padding-inline: clamp(1rem, 4vw, 4rem);
+}
+
+.warm-studio-page .services-body > p {
+  color: var(--ink-muted) !important;
+  line-height: 1.7;
+}
+
+.warm-studio-page .single-service {
+  background: rgba(255, 255, 255, 0.38) !important;
+  border: 1px solid var(--studio-border);
+  border-radius: 26px;
+  box-shadow: var(--studio-shadow);
+}
+
+.warm-studio-page .service-content,
+.warm-studio-page .service-content h4,
+.warm-studio-page .service-content svg {
+  color: var(--ink) !important;
+}
+
+.warm-studio-page .testimonials {
+  height: auto;
+  min-height: 44rem;
+}
+
+.warm-studio-page .testimonials--body {
+  max-width: 1180px;
+}
+
+.warm-studio-page .review--img {
+  background: var(--studio-deep) !important;
+  border: 1px solid var(--studio-border);
+  box-shadow: 0 12px 34px rgba(48, 39, 32, 0.12);
+}
+
+.warm-studio-page .review--content {
+  background: rgba(255, 255, 255, 0.38) !important;
+  border: 1px solid var(--studio-border);
+  border-radius: 32px;
+  box-shadow: var(--studio-shadow);
+}
+
+.warm-studio-page .review--content :is(h1, h4, p) {
+  color: var(--ink) !important;
+}
+
+.warm-studio-page .testimonials--body button {
+  background: var(--ink) !important;
+  color: var(--studio-light) !important;
+  border: 1px solid var(--ink) !important;
+  box-shadow: 0 10px 24px rgba(48, 39, 32, 0.12);
+}
+
+.warm-studio-page .slick-dots button {
+  background: transparent !important;
+  box-shadow: none;
+}
+
+.warm-studio-page .contacts--container {
+  width: min(100%, 1280px);
+  margin-inline: auto;
+}
+
+.warm-studio-page :is(.form-input, .form-message) {
+  background: rgba(255, 255, 255, 0.42) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--studio-border) !important;
+  border-radius: 18px;
+}
+
+.warm-studio-page .contacts label {
+  color: var(--ink) !important;
+}
+
+.warm-studio-page .submit-btn button {
+  background: var(--ink) !important;
+  color: #fff !important;
+  border: 1px solid var(--ink) !important;
+}
+
+.warm-studio-page .contacts-details :is(p, a, svg) {
+  color: var(--ink) !important;
+}
+
+.warm-studio-page .contacts-details [class*='makeStyles-detailsIcon'],
+.warm-studio-page .contacts-details [class*='makeStyles-socialIcon'] {
+  background: rgba(255, 255, 255, 0.42) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--studio-border);
+  box-shadow: none;
+}
+
+.warm-studio-page .contacts--img {
+  filter: saturate(0.1) sepia(0.12);
+  opacity: 0.6;
+}
+
+.warm-studio-page .footer {
+  min-height: 90px;
+  height: auto;
+  background: var(--ink) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.warm-studio-page .footer p {
+  color: var(--studio-light) !important;
+}
+
+.warm-studio-page .footer span {
+  color: #c8aa94 !important;
+}
+
+@media (max-width: 760px) {
+  .warm-studio-page :is(
+    .about,
+    .skills,
+    .experience,
+    .projects,
+    .services,
+    .education,
+    .testimonials,
+    .contacts
+  ) {
+    padding-block: 4rem;
+  }
+
+  .warm-studio-page :is(.about-body, .experience-body, .education-body) {
+    padding-inline: 1rem;
+  }
+
+  .warm-studio-page .about-body {
+    gap: 1rem;
+  }
+
+  .warm-studio-page .about-description {
+    padding-inline: 0.5rem;
+  }
+
+  .warm-studio-page .projects--bodyContainer {
+    gap: 2rem;
+  }
+
+  .warm-studio-page .singleProject {
+    width: min(100%, 22rem);
+  }
+
+  .warm-studio-page :is(.experience-card, .education-card) {
+    min-height: 132px;
+    height: auto;
+  }
+
+  .warm-studio-page .contacts--container {
+    padding-inline: 1.25rem;
+  }
+
+  .warm-studio-page .contacts-details,
+  .warm-studio-page .personal-details {
+    max-width: 100%;
+  }
+
+  .warm-studio-page .personal-details p {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .warm-studio-page .socialmedia-icons {
+    gap: 0.9rem;
+  }
+}
