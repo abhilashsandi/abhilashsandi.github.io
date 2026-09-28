@@ -109,8 +109,8 @@ function Landing() {
           aria-hidden={!showCanvas}
         />
       </div>
-      {trackingEnabled && <div className='cursor-hero__cursor' aria-hidden='true' ref={cursorRef} />}
-      <p className='cursor-hero__hint' aria-hidden='true'>Move your cursor</p>
+      {showCanvas && <div className='cursor-hero__cursor' aria-hidden='true' ref={cursorRef} />}
+      {showCanvas && <p className='cursor-hero__hint' aria-hidden='true'>Move your cursor</p>}
     </section>
   );
 }

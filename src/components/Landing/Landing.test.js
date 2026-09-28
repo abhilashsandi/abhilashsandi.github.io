@@ -39,6 +39,7 @@ test('renders the Warm Studio hero identity and actions', () => {
     'aria-hidden',
     'true'
   );
+  expect(screen.queryByText(/move your cursor/i)).not.toBeInTheDocument();
 });
 
 test('renders the compact primary navigation', () => {
