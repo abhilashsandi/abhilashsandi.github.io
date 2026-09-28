@@ -207,6 +207,15 @@
   max-width: 1180px;
 }
 
+.warm-studio-page .testimonials--slider,
+.warm-studio-page .single--testimony {
+  background: transparent !important;
+}
+
+.warm-studio-page .testimonials--body .quote {
+  color: #6b4d3a !important;
+}
+
 .warm-studio-page .review--img {
   background: var(--studio-deep) !important;
   border: 1px solid var(--studio-border);

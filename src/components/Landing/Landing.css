@@ -16,7 +16,7 @@
 @media(max-width:760px){
   .cursor-hero{
     display:grid;
-    grid-template-rows:minmax(32rem,62svh) auto;
+    grid-template-rows:minmax(26rem,58svh) auto;
     min-height:100svh;
     padding:0 1.25rem 2.5rem;
     overflow:hidden;
@@ -30,7 +30,7 @@
     justify-content:center;
   }
   .cursor-hero__character{
-    height:min(62svh,35rem);
+    height:min(58svh,32rem);
     transform:none;
   }
   .cursor-hero__character img,
@@ -39,6 +39,7 @@
   }
   .cursor-hero__copy{
     position:relative;
+    grid-row:2;
     inset:auto;
     z-index:3;
     align-self:end;
@@ -71,7 +72,7 @@
 }
 @media(max-width:380px){
   .cursor-hero{
-    grid-template-rows:minmax(29rem,59svh) auto;
+    grid-template-rows:minmax(24rem,56svh) auto;
     padding-inline:.9rem;
   }
   .cursor-hero__nav{
@@ -84,7 +85,7 @@
     letter-spacing:.12em;
   }
   .cursor-hero__character{
-    height:min(59svh,32rem);
+    height:min(56svh,29rem);
   }
   .cursor-hero__copy h1{
     font-size:clamp(3.45rem,17vw,4.6rem);
