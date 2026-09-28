@@ -1,6 +1,10 @@
 import unittest
 
-from scripts.extract_character_frames import directional_motion_indices, evenly_spaced_indices
+from scripts.extract_character_frames import (
+    circular_motion_indices,
+    directional_motion_indices,
+    evenly_spaced_indices,
+)
 
 
 class EvenlySpacedIndicesTest(unittest.TestCase):
@@ -25,6 +29,15 @@ class EvenlySpacedIndicesTest(unittest.TestCase):
     def test_directional_motion_requires_quarter_turn_groups(self):
         with self.assertRaisesRegex(ValueError, "multiple of four"):
             directional_motion_indices(100, 63)
+
+    def test_circular_motion_uses_real_cardinal_anchors(self):
+        indices = circular_motion_indices(241, 64, (0.075, 0.267, 0.529, 0.729, 0.863))
+        self.assertEqual(len(indices), 64)
+        self.assertEqual(indices[0], 18)
+        self.assertEqual(indices[16], 64)
+        self.assertEqual(indices[32], 127)
+        self.assertEqual(indices[48], 175)
+        self.assertEqual(indices[-1], 207)
 
 
 if __name__ == "__main__":
