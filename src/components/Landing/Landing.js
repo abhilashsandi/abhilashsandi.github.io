@@ -1,197 +1,102 @@
-import React, { useContext } from 'react';
-import { Button } from '@material-ui/core';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavHashLink as NavLink } from 'react-router-hash-link';
-import { makeStyles } from '@material-ui/core/styles';
 
 import './Landing.css';
-import { ThemeContext } from '../../contexts/ThemeContext';
 import { headerData } from '../../data/headerData';
-import { socialsData } from '../../data/socialsData';
+import { angleForPointer, frameForAngle, isInsideDeadZone, lerpAngle } from './landingAnimation';
+import useCharacterFrames, { CENTER_FRAME, FRAME_COUNT } from './useCharacterFrames';
 
-import {
-    FaTwitter,
-    FaLinkedin,
-    FaGithub,
-    FaYoutube,
-    FaBlogger,
-} from 'react-icons/fa';
+const TRACKING = { smoothing: 0.26, deadZoneRatio: 0.12 };
+const supportsTracking = () => typeof window !== 'undefined' &&
+  window.matchMedia('(pointer: fine)').matches &&
+  window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
 
 function Landing() {
-    const { theme, drawerOpen } = useContext(ThemeContext);
+  const heroRef = useRef(null);
+  const canvasRef = useRef(null);
+  const cursorRef = useRef(null);
+  const pointerRef = useRef(null);
+  const angleRef = useRef(-Math.PI / 2);
+  const [trackingEnabled, setTrackingEnabled] = useState(supportsTracking);
+  const { frames, center, ready } = useCharacterFrames(trackingEnabled);
 
-    const useStyles = makeStyles((t) => ({
-        resumeBtn: {
-            color: theme.primary,
-            borderRadius: '30px',
-            textTransform: 'inherit',
-            textDecoration: 'none',
-            width: '150px',
-            fontSize: '1rem',
-            fontWeight: '500',
-            height: '50px',
-            fontFamily: 'var(--primaryFont)',
-            border: `3px solid ${theme.primary}`,
-            transition: '100ms ease-out',
-            '&:hover': {
-                backgroundColor: theme.tertiary,
-                color: theme.secondary,
-                border: `3px solid ${theme.tertiary}`,
-            },
-            [t.breakpoints.down('sm')]: {
-                width: '180px',
-            },
-        },
-        contactBtn: {
-            backgroundColor: theme.primary,
-            color: theme.secondary,
-            borderRadius: '30px',
-            textTransform: 'inherit',
-            textDecoration: 'none',
-            width: '150px',
-            height: '50px',
-            fontSize: '1rem',
-            fontWeight: '500',
-            fontFamily: 'var(--primaryFont)',
-            border: `3px solid ${theme.primary}`,
-            transition: '100ms ease-out',
-            '&:hover': {
-                backgroundColor: theme.secondary,
-                color: theme.tertiary,
-                border: `3px solid ${theme.tertiary}`,
-            },
-            [t.breakpoints.down('sm')]: {
-                display: 'none',
-            },
-        },
-    }));
+  useEffect(() => {
+    const pointerQuery = window.matchMedia('(pointer: fine)');
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: no-preference)');
+    const update = () => setTrackingEnabled(pointerQuery.matches && motionQuery.matches);
+    pointerQuery.addListener(update);
+    motionQuery.addListener(update);
+    return () => {
+      pointerQuery.removeListener(update);
+      motionQuery.removeListener(update);
+    };
+  }, []);
 
-    const classes = useStyles();
+  useEffect(() => {
+    if (!trackingEnabled || !ready || !heroRef.current || !canvasRef.current) return undefined;
+    const hero = heroRef.current;
+    const canvas = canvasRef.current;
+    const context = canvas.getContext('2d');
+    let animationFrame;
+    const draw = (image) => {
+      if (canvas.width !== image.naturalWidth) canvas.width = image.naturalWidth;
+      if (canvas.height !== image.naturalHeight) canvas.height = image.naturalHeight;
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.globalAlpha = 1;
+      context.drawImage(image, 0, 0);
+    };
+    const onPointerMove = (event) => {
+      pointerRef.current = { x: event.clientX, y: event.clientY };
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+      }
+    };
+    const render = () => {
+      const rect = hero.getBoundingClientRect();
+      const faceCenter = { x: rect.left + rect.width * 0.59, y: rect.top + rect.height * 0.42 };
+      const pointer = pointerRef.current || faceCenter;
+      const radius = Math.min(rect.width, rect.height) * TRACKING.deadZoneRatio;
+      let image = center;
+      if (!isInsideDeadZone(pointer, faceCenter, radius)) {
+        angleRef.current = lerpAngle(angleRef.current, angleForPointer(pointer, faceCenter), TRACKING.smoothing);
+        image = frames[frameForAngle(angleRef.current, FRAME_COUNT)];
+      }
+      if (image) draw(image);
+      animationFrame = window.requestAnimationFrame(render);
+    };
+    window.addEventListener('pointermove', onPointerMove, { passive: true });
+    draw(center);
+    animationFrame = window.requestAnimationFrame(render);
+    return () => {
+      window.removeEventListener('pointermove', onPointerMove);
+      window.cancelAnimationFrame(animationFrame);
+    };
+  }, [center, frames, ready, trackingEnabled]);
 
-    return (
-        <div className='landing'>
-            <div className='landing--container'>
-                <div
-                    className='landing--container-left'
-                    style={{ backgroundColor: theme.primary }}
-                >
-                    <div className='lcl--content'>
-                        {socialsData.linkedIn && (
-                            <a
-                                href={socialsData.linkedIn}
-                                target='_blank'
-                                rel='noreferrer'
-                            >
-                                <FaLinkedin
-                                    className='landing--social'
-                                    style={{ color: theme.secondary }}
-                                    aria-label='LinkedIn'
-                                />
-                            </a>
-                        )}
-                        {socialsData.github && (
-                            <a
-                                href={socialsData.github}
-                                target='_blank'
-                                rel='noreferrer'
-                            >
-                                <FaGithub
-                                    className='landing--social'
-                                    style={{ color: theme.secondary }}
-                                    aria-label='GitHub'
-                                />
-                            </a>
-                        )}
-                        {socialsData.twitter && (
-                            <a
-                                href={socialsData.twitter}
-                                target='_blank'
-                                rel='noreferrer'
-                            >
-                                <FaTwitter
-                                    className='landing--social'
-                                    style={{ color: theme.secondary }}
-                                    aria-label='Twitter'
-                                />
-                            </a>
-                        )}
-                        {socialsData.youtube && (
-                            <a
-                                href={socialsData.youtube}
-                                target='_blank'
-                                rel='noreferrer'
-                            >
-                                <FaYoutube
-                                    className='landing--social'
-                                    style={{ color: theme.secondary }}
-                                    aria-label='YouTube'
-                                />
-                            </a>
-                        )}
-                        {socialsData.blogger && (
-                            <a
-                                href={socialsData.blogger}
-                                target='_blank'
-                                rel='noreferrer'
-                            >
-                                <FaBlogger
-                                    className='landing--social'
-                                    style={{ color: theme.secondary }}
-                                    aria-label='Blogger'
-                                />
-                            </a>
-                        )}
-                    </div>
-                </div>
-                <img
-                    src={headerData.image}
-                    alt=''
-                    className='landing--img'
-                    style={{
-                        opacity: `${drawerOpen ? '0' : '1'}`,
-                        borderColor: theme.secondary,
-                    }}
-                />
-                <div
-                    className='landing--container-right'
-                    style={{ backgroundColor: theme.secondary }}
-                >
-                    <div
-                        className='lcr--content'
-                        style={{ color: theme.tertiary }}
-                    >
-                        <h6>{headerData.title}</h6>
-                        <h1>{headerData.name}</h1>
-                        <p>{headerData.desciption}</p>
-
-                        <div className='lcr-buttonContainer'>
-                            {headerData.resumePdf && (
-                                <a
-                                    href={headerData.resumePdf}
-                                    download='Abhilash_Sandi_Resume'
-                                    target='_blank'
-                                    rel='noreferrer'
-                                >
-                                    <Button className={classes.resumeBtn}>
-                                        Download CV
-                                    </Button>
-                                </a>
-                            )}
-                            <NavLink
-                                to='/#contacts'
-                                smooth={true}
-                                spy='true'
-                                duration={2000}
-                            >
-                                <Button className={classes.contactBtn}>
-                                    Contact
-                                </Button>
-                            </NavLink>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  return (
+    <section className='cursor-hero' aria-labelledby='hero-title' ref={heroRef}>
+      <nav className='cursor-hero__nav' aria-label='Primary navigation'>
+        <NavLink to='/#projects' smooth>Work</NavLink>
+        <NavLink to='/#about' smooth>About</NavLink>
+        <NavLink to='/#contacts' smooth>Contact</NavLink>
+      </nav>
+      <div className='cursor-hero__copy'>
+        <p className='cursor-hero__eyebrow'>Hi, I'm</p>
+        <h1 id='hero-title'>{headerData.name}</h1>
+        <p className='cursor-hero__bio'>{headerData.desciption}</p>
+        <div className='cursor-hero__actions'>
+          <a href={headerData.resumePdf} download='Abhilash_Sandi_Resume'>Resume <span aria-hidden='true'>→</span></a>
+          <NavLink to='/#contacts' smooth>Let's Talk</NavLink>
         </div>
-    );
+      </div>
+      <div className={`cursor-hero__character${ready ? ' is-ready' : ''}`}>
+        <img src={CENTER_FRAME} alt='Abhilash Sandi' />
+        <canvas ref={canvasRef} aria-label='Animated portrait of Abhilash Sandi following the pointer' />
+      </div>
+      {trackingEnabled && <div className='cursor-hero__cursor' aria-hidden='true' ref={cursorRef} />}
+      <p className='cursor-hero__hint' aria-hidden='true'>Move your cursor</p>
+    </section>
+  );
 }
 
 export default Landing;
