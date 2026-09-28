@@ -3,6 +3,7 @@ import {
   frameForAngle,
   isInsideDeadZone,
   lerpAngle,
+  shouldShowCanvas,
 } from './landingAnimation';
 
 test('angleForPointer returns the screen-space angle around the face', () => {
@@ -27,4 +28,11 @@ test('frameForAngle aligns the up-first video sequence to cursor direction', () 
 test('isInsideDeadZone uses the configured radius', () => {
   expect(isInsideDeadZone({ x: 11, y: 11 }, { x: 10, y: 10 }, 2)).toBe(true);
   expect(isInsideDeadZone({ x: 13, y: 13 }, { x: 10, y: 10 }, 2)).toBe(false);
+});
+
+test('shouldShowCanvas requires tracking, loaded frames, and canvas support', () => {
+  expect(shouldShowCanvas(true, true, true)).toBe(true);
+  expect(shouldShowCanvas(false, true, true)).toBe(false);
+  expect(shouldShowCanvas(true, false, true)).toBe(false);
+  expect(shouldShowCanvas(true, true, false)).toBe(false);
 });

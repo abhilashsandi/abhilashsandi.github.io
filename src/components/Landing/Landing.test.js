@@ -35,6 +35,10 @@ test('renders the Warm Studio hero identity and actions', () => {
     screen.getByRole('link', { name: /let's talk/i })
   ).toBeInTheDocument();
   expect(screen.getByRole('img', { name: /abhilash sandi/i })).toBeInTheDocument();
+  expect(screen.getByLabelText(/animated portrait/i)).toHaveAttribute(
+    'aria-hidden',
+    'true'
+  );
 });
 
 test('renders the compact primary navigation', () => {

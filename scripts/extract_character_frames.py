@@ -19,6 +19,39 @@ def evenly_spaced_indices(
     ]
 
 
+def looped_motion_indices(
+    frame_count: int,
+    output_count: int = 64,
+    start_ratio: float = 0.08,
+    end_ratio: float = 0.88,
+) -> list[int]:
+    """Sample up/right/down/left, then route left -> center -> up to close the loop."""
+    if output_count < 8 or output_count % 4:
+        raise ValueError("output count must be a multiple of four and at least eight")
+    last_index = frame_count - 1
+    start_index = round(last_index * start_ratio)
+    end_index = round(last_index * end_ratio)
+    left_output_index = output_count * 3 // 4
+    left_index = round(
+        start_index
+        + left_output_index * (end_index - start_index) / (output_count - 1)
+    )
+    center_index = round(last_index * 0.97)
+    directional = evenly_spaced_indices(
+        frame_count, left_output_index + 1, start_index, left_index
+    )
+    closing_count = output_count - len(directional)
+    center_count = closing_count // 2
+    upward_count = closing_count - center_count
+    left_to_center = evenly_spaced_indices(
+        frame_count, center_count + 1, left_index, center_index
+    )[1:]
+    center_to_up = evenly_spaced_indices(
+        frame_count, upward_count + 1, 0, start_index
+    )[1:]
+    return directional + left_to_center + center_to_up
+
+
 def extract(
     source: Path,
     destination: Path,
@@ -38,10 +71,8 @@ def extract(
         raise RuntimeError("video metadata is incomplete")
 
     destination.mkdir(parents=True, exist_ok=True)
-    start_index = round((frame_count - 1) * start_ratio)
-    end_index = round((frame_count - 1) * end_ratio)
     for output_index, source_index in enumerate(
-        evenly_spaced_indices(frame_count, output_count, start_index, end_index)
+        looped_motion_indices(frame_count, output_count, start_ratio, end_ratio)
     ):
         capture.set(cv2.CAP_PROP_POS_FRAMES, source_index)
         ok, frame = capture.read()

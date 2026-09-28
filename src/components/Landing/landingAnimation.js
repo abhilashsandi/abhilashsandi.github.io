@@ -15,3 +15,6 @@ export const frameForAngle = (angle, frameCount) => {
 
 export const isInsideDeadZone = (pointer, faceCenter, radius) =>
   Math.hypot(pointer.x - faceCenter.x, pointer.y - faceCenter.y) <= radius;
+
+export const shouldShowCanvas = (trackingEnabled, ready, canvasSupported) =>
+  trackingEnabled && ready && canvasSupported;

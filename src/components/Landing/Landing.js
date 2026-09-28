@@ -3,7 +3,13 @@ import { NavHashLink as NavLink } from 'react-router-hash-link';
 
 import './Landing.css';
 import { headerData } from '../../data/headerData';
-import { angleForPointer, frameForAngle, isInsideDeadZone, lerpAngle } from './landingAnimation';
+import {
+  angleForPointer,
+  frameForAngle,
+  isInsideDeadZone,
+  lerpAngle,
+  shouldShowCanvas,
+} from './landingAnimation';
 import useCharacterFrames, { CENTER_FRAME, FRAME_COUNT } from './useCharacterFrames';
 
 const TRACKING = { smoothing: 0.26, deadZoneRatio: 0.12 };
@@ -18,7 +24,9 @@ function Landing() {
   const pointerRef = useRef(null);
   const angleRef = useRef(-Math.PI / 2);
   const [trackingEnabled, setTrackingEnabled] = useState(supportsTracking);
+  const [canvasSupported, setCanvasSupported] = useState(true);
   const { frames, center, ready } = useCharacterFrames(trackingEnabled);
+  const showCanvas = shouldShowCanvas(trackingEnabled, ready, canvasSupported);
 
   useEffect(() => {
     const pointerQuery = window.matchMedia('(pointer: fine)');
@@ -33,10 +41,14 @@ function Landing() {
   }, []);
 
   useEffect(() => {
-    if (!trackingEnabled || !ready || !heroRef.current || !canvasRef.current) return undefined;
+    if (!showCanvas || !heroRef.current || !canvasRef.current) return undefined;
     const hero = heroRef.current;
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
+    if (!context) {
+      setCanvasSupported(false);
+      return undefined;
+    }
     let animationFrame;
     const draw = (image) => {
       if (canvas.width !== image.naturalWidth) canvas.width = image.naturalWidth;
@@ -71,7 +83,7 @@ function Landing() {
       window.removeEventListener('pointermove', onPointerMove);
       window.cancelAnimationFrame(animationFrame);
     };
-  }, [center, frames, ready, trackingEnabled]);
+  }, [center, frames, showCanvas]);
 
   return (
     <section className='cursor-hero' aria-labelledby='hero-title' ref={heroRef}>
@@ -89,9 +101,13 @@ function Landing() {
           <NavLink to='/#contacts' smooth>Let's Talk</NavLink>
         </div>
       </div>
-      <div className={`cursor-hero__character${ready ? ' is-ready' : ''}`}>
-        <img src={CENTER_FRAME} alt='Abhilash Sandi' />
-        <canvas ref={canvasRef} aria-label='Animated portrait of Abhilash Sandi following the pointer' />
+      <div className={`cursor-hero__character${showCanvas ? ' is-ready' : ''}`}>
+        <img src={CENTER_FRAME} alt='Abhilash Sandi' aria-hidden={showCanvas} />
+        <canvas
+          ref={canvasRef}
+          aria-label='Animated portrait of Abhilash Sandi following the pointer'
+          aria-hidden={!showCanvas}
+        />
       </div>
       {trackingEnabled && <div className='cursor-hero__cursor' aria-hidden='true' ref={cursorRef} />}
       <p className='cursor-hero__hint' aria-hidden='true'>Move your cursor</p>
