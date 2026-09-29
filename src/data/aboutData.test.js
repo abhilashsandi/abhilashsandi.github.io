@@ -1,6 +1,7 @@
 import { aboutData } from './aboutData'
 
 test('matches the approved full-stack and production GenAI profile copy', () => {
+  expect(aboutData).not.toHaveProperty('description1')
   expect(aboutData.description2).toBe(
     'Senior Full Stack Software Engineer with 13+ years of experience designing and delivering end-to-end web applications across insurance, e-commerce and retail, banking, SaaS, and low-code platforms. I specialize in React, Next.js, Node.js, and TypeScript, building scalable front-end and back-end systems that deliver reliable, high-quality user experiences.'
   )
