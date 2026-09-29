@@ -1,12 +1,6 @@
 export const aboutData = {
     title: "Who I am",
-    description1: "My name's Abhilash Reddy Sandi. I'm a Senior Software Engineer based in Dallas, TX, US.",
-    description2: `Senior Software Engineer with 13 years of experience leading cross-functional teams to build
-    and deliver full-stack web applications for diverse markets. Specializes in React/Next.js and Node.js
-    development, owning projects end-to-end across front-end and back-end. Experienced in RESTful API
-    design, microservices, and cloud-based deployments, with deep proficiency in Agile methodologies.
-    Drives adoption of AI-assisted development workflows (Claude Code, Cursor) to accelerate delivery and
-    improve code quality. Skilled at mentoring junior developers and leading teams to successful project
-    completion.`,
+    description2: `Senior Full Stack Software Engineer with 13+ years of experience designing and delivering end-to-end web applications across insurance, e-commerce and retail, banking, SaaS, and low-code platforms. I specialize in React, Next.js, Node.js, and TypeScript, building scalable front-end and back-end systems that deliver reliable, high-quality user experiences.`,
+    description3: `My recent work includes production Generative AI features using OpenAI APIs, token streaming with SSE, RAG with pgvector, embeddings, semantic search, prompt engineering, and agentic workflows using MCP servers, Claude Code, and BMAD. I also bring hands-on expertise in REST and GraphQL APIs, microservices, OAuth2/JWT, PostgreSQL, MongoDB, Redis, cloud deployments, Docker, Kubernetes, RabbitMQ, and CI/CD—while leading teams and advancing AI-assisted development practices.`,
     image: 2
 }
