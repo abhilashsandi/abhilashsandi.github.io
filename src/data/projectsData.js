@@ -11,6 +11,28 @@ import eight from '../assets/svg/projects/eight.svg'
 export const projectsData = [
     {
         id: 1,
+        projectName: 'Goosehead Insurance Quoting Platform',
+        projectDesc: `Agent and customer portals for home and auto insurance quote-to-bind workflows,
+        built on a Node.js/Express backend with a configuration-based carrier system and a
+        React/Next.js frontend in an Nx monorepo.`,
+        tags: ['React', 'Next.js', 'Node.js', 'TypeScript'],
+        code: 'https://github.com/abhilashsandi',
+        demo: 'https://quote.goosehead.com/',
+        image: three
+    },
+    {
+        id: 2,
+        projectName: 'Walmart Canada & Mexico Search',
+        projectDesc: `Led the phased migration of the Canada and Mexico search codebases into a unified
+        US platform, and built React/TypeScript frontend features alongside Node.js/GraphQL backend
+        services for search, coupons, and subscriptions.`,
+        tags: ['React', 'TypeScript', 'GraphQL', 'Node.js'],
+        code: 'https://github.com/abhilashsandi',
+        demo: 'https://www.walmart.ca/en',
+        image: four
+    },
+    {
+        id: 3,
         projectName: 'Website Builder',
         projectDesc: `Website builder tool allows users to design and create websites
         without having to edit code. Users can do everything, without designers and
@@ -21,7 +43,7 @@ export const projectsData = [
         image: one
     },
     {
-        id: 2,
+        id: 4,
         projectName: 'wavemaker',
         projectDesc: `WaveMaker Platform combines rapid application Development (RAD)
         with PAAS (Platform As A Service) for customers wanting speedy creation of custom
